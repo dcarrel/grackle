@@ -1381,7 +1381,7 @@ c -------------------------------------------------------------------
             if (itmask(i)) then
 
 !              Calculate a Sobolev-like length assuming a 3D grid.
-               if (iH2shield == 1) then
+               if ((iH2shield == 1) .OR. (iH2shield == 4)) then
 
                divrhoa(1) = d(i+1, j  , k  ) - d(i,j,k)
                divrhoa(2) = d(i-1, j  , k  ) - d(i,j,k)
@@ -1422,8 +1422,18 @@ c -------------------------------------------------------------------
      &           0.035_DKIND * exp(-8.5E-4_DKIND * sqrt(1._DKIND +x))/
      &           sqrt(1._DKIND + x)
                k31shield(i) = f_shield * k31shield(i)
+
+c           HI shielding of H2 adopted from Neyer & Wolcott-Green
+ 
+	    if(iH2shield == 4) then
+                N_HI = dom * HI(i,j,k) * l_H2shield 
+                xHI = N_HI / 2.85e23_RKIND
+                f_shield = 0.95_RKIND/(1 + xHI)**(1.5) * exp(-0.145_RKIND * xHI)
+                k31shield(i) = f_shield * k31shield(i)
             endif
-         enddo
+                                              
+        endif
+      enddo
       endif
       endif
 
