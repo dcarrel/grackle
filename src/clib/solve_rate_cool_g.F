@@ -1158,7 +1158,8 @@ c -------------------------------------------------------------------
       integer i, n1
       real*8 factor, x, logtem0, logtem9, dlogtem, nh,
      &       d_logtem0, d_logtem9, d_dlogtem, divrho, N_H2,
-     &       f_shield, b_doppler, l_H2shield
+     &       f_shield, b_doppler, l_H2shield,
+     &       N_HI, xHI
       real*8 k13_CID, k13_DT
 
       real*8 nSSh, nratio
@@ -1428,7 +1429,7 @@ c           HI shielding of H2 adopted from Neyer & Wolcott-Green
 	    if(iH2shield == 4) then
                 N_HI = dom * HI(i,j,k) * l_H2shield 
                 xHI = N_HI / 2.85e23_RKIND
-                f_shield = 0.95_RKIND/(1 + xHI)**(1.5) * exp(-0.145_RKIND * xHI)
+                f_shield = 0.95_RKIND/(1 + xHI)**(1.5) * exp(-0.145_RKIND*xHI)
                 k31shield(i) = f_shield * k31shield(i)
             endif
                                               
