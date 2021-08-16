@@ -1429,8 +1429,8 @@ c           HI shielding of H2 adopted from Neyer & Wolcott-Green
 	    if(iH2shield == 4) then
                 N_HI = dom * HI(i,j,k) * l_H2shield 
                 xHI = N_HI / 2.85e23_RKIND
-                f_shield = 0.95_RKIND/(1 + xHI)**(1.5)* 
-      &                    exp(-0.145_RKIND*xHI)
+                f_shield = 0.95_RKIND/(1 + xHI)**(1.5) *
+     &              exp(-0.145_RKIND*xHI)
                 k31shield(i) = f_shield * k31shield(i)
             endif
                                               
