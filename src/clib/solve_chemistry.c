@@ -117,15 +117,17 @@ int local_solve_chemistry(chemistry_data *my_chemistry,
     my_uvb_rates.k24       = my_rates->k24;
     my_uvb_rates.k25       = my_rates->k25;
     my_uvb_rates.k26       = my_rates->k26;
-    my_uvb_rates.k27       = my_rates->k27;
-    my_uvb_rates.k28       = my_rates->k28;
     my_uvb_rates.k29       = my_rates->k29;
     my_uvb_rates.k30       = my_rates->k30;
     //LW Background rates without UVBackground = 1
     if(my_chemistry->LWbackground_intensity > 0.0){
         my_uvb_rates.k31 = 1.38e-12 * my_chemistry->LWbackground_intensity * my_units->time_units;
+	my_uvb_rates.k27 = 1e-10 * 0.1362 * my_chemistry->LWbackground_intensity * my_units->time_units;
+	my_uvb_rates.k28 = 4.10988e-12 * my_chemistry->LWbackground_intensity * my_units -> time_units;
     }
     else{
+	my_uvb_rates.k27 = my_rates->k27;
+        my_uvb_rates.k28 = my_rates->k28;
         my_uvb_rates.k31 = my_rates->k31;
     }
     my_uvb_rates.piHI      = my_rates->piHI;
